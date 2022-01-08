@@ -1,0 +1,65 @@
+<div class="detail">
+  <button routerLink="studentReg" type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Student
+  </button>
+  <div class="table">
+  <dx-data-grid
+    [dataSource]="students"
+    keyExpr="id"
+    [allowColumnReordering]="true"
+    [columnAutoWidth]="true"
+    [showRowLines]="true"
+    [allowColumnReordering]="true"
+    (onSelectionChanged)="selectedStudent($event)"
+
+    >
+    <dxo-scrolling rowRenderingMode="virtual"> </dxo-scrolling>
+  <dxo-paging [pageSize]="4"> </dxo-paging>
+    <dxi-column
+        dataField="profile_picture"
+        [width]="100"
+        [allowFiltering]="false"
+        [allowSorting]="false"
+        cellTemplate="cellTemplate"
+    ></dxi-column>
+    <dxi-column dataField="first_name"></dxi-column>
+    <dxi-column dataField="last_name"></dxi-column>
+    <dxi-column dataField="address"></dxi-column>
+    <dxi-column dataField="school"></dxi-column>
+    <dxi-column dataField="email"></dxi-column>
+    <dxi-column dataField="mobile"></dxi-column>
+    <dxi-column dataField="createdAt" dataType="date" caption="Enroll Date">
+    </dxi-column>
+    <dxi-column dataField="updatedAt" dataType="date" [visible]="false">
+    </dxi-column>
+    <div *dxTemplate="let data of 'cellTemplate'">
+        <img [src]="data.value" style="height: 60px;width: 60px;border-radius: 50%;border: 2px solid rgb(22, 102, 139);"/>
+      </div>
+
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true"></dxo-search-panel>
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"></dxo-editing>
+    <dxo-master-detail
+      [enabled]="true"
+      [template]="'employee-info'">
+    </dxo-master-detail>
+    <dxo-export [enabled]="true"></dxo-export>
+  </dx-data-grid>
+  </div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register Student</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    #myModalClose></button>
+            </div>
+            <div class="modal-body">
+                <app-student-register (close)="closeModel()"></app-student-register>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,50 @@
+.container {
+  margin-top: 3%;
+  margin-left: 5%;
+  padding: 0;
+}
+.mainheading {
+  margin-top: 10%;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.heading {
+  margin-top: 10%;
+  font-weight: bold;
+  font-size: 50px;
+}
+.para {
+  margin-top: 20%;
+  font-weight: bold;
+  width: 320px;
+  font-size: 20px;
+}
+
+#info {
+  margin-top: 30%;
+}
+#location {
+  font-weight: bold;
+}
+#email {
+  font-weight: bold;
+}
+#mainimg {
+  margin-right: 10%;
+  width: 100px;
+  height: 100px;
+}
+
+@media screen and (max-width: 1200px) {
+  .heading {
+    margin-top: 10%;
+    font-weight: bold;
+    font-size: 35px;
+  }
+  .homeimg {
+    width: 600px;
+    height: 500px;
+    margin-top: 30%;
+  }
+}

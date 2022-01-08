@@ -1,0 +1,212 @@
+<div class="container">
+  <!--Show error message-->
+  <div
+    *ngIf="errormsg"
+    class="alert alert-danger alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{ errormsg }}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div
+    *ngIf="successmsg"
+    class="alert alert-success alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{ successmsg }}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <form [formGroup]="userForm">
+    <img
+      [src]="url"
+      alt="Avatar"
+      class="center"
+      onerror="src='assets/profile.png'"
+    />
+    <br />
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            formControlName="first_name"
+            type="text"
+            class="form-control form-control-sm"
+            id="firstName"
+            required
+            placeholder="First name"
+          />
+          <div
+            *ngIf="FirstName?.touched && FirstName?.invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="FirstName?.errors?.required">
+              firstName is required.
+            </div>
+            <div *ngIf="FirstName?.errors?.cannotContainSpace">
+              Can not be contained space
+            </div>
+            <div *ngIf="FirstName?.errors?.minlength">
+              Name should be minimun
+              {{ FirstName?.errors?.minlength.requiredLength }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="secondName">Last Name</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="last_name"
+            id="secondName"
+            required
+            placeholder="Last name"
+          />
+          <div
+            *ngIf="LastName?.touched && LastName?.invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="LastName?.errors?.required">LastName is required.</div>
+            <div *ngIf="LastName?.errors?.minlength">
+              Name should be minimun
+              {{ LastName?.errors?.minlength.requiredLength }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <label for="Address">Address</label>
+      <input
+        formControlName="address"
+        type="text"
+        class="form-control form-control-sm"
+        id="Address"
+        required
+        placeholder="1234 Main St"
+      />
+      <div
+        *ngIf="Address?.touched && Address?.invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="Address?.errors?.required">Address is required.</div>
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="Email">Email</label>
+      <input
+        formControlName="email"
+        type="text"
+        class="form-control form-control-sm"
+        id="email"
+        required
+        placeholder="ex@gmail.com"
+      />
+      <div *ngIf="Email?.touched && Email?.invalid" class="alert alert-danger">
+        <div *ngIf="Email?.errors?.required">Email is required.</div>
+        <div *ngIf="Email?.errors?.cannotContainSpace">
+          Can not be contained space
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="Mobile">Mobile</label>
+      <input
+        formControlName="phone"
+        type="text"
+        class="form-control form-control-sm"
+        id="Mobile"
+        required
+        placeholder="+94 673456543"
+      />
+      <div *ngIf="Phone?.touched && Phone?.invalid" class="alert alert-danger">
+        <div *ngIf="Phone?.errors?.required">Phone is required.</div>
+        <div *ngIf="Phone?.errors?.pattern">
+          letters are not valied & must contain 10 numbers
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <label for="School">School</label>
+      <input
+        formControlName="school"
+        type="text"
+        class="form-control form-control-sm"
+        id="School"
+        required
+        placeholder="stc gov school"
+      />
+      <div
+        *ngIf="School?.touched && School?.invalid"
+        class="alert alert-danger"
+      >
+        <div *ngIf="School?.errors?.required">School is required.</div>
+      </div>
+    </div>
+    <br />
+
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="Family">Family</label>
+          <select
+            formControlName="family_name"
+            class="form-control"
+            id="Family"
+          >
+            <option value="rathnayaka">Rathnayaka</option>
+            <option value="weerasinghe">Weerasinghe</option>
+            <option value="gajaweera">Gajaweera</option>
+            <option value="abenayake">Abenayake</option>
+          </select>
+          <div
+            *ngIf="FamilyName?.touched && FamilyName?.invalid"
+            class="alert alert-danger"
+          >
+            <div *ngIf="FamilyName?.errors?.required">
+              FamilyName is required.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <br />
+        Image :
+        <input
+          type="file"
+          name="image"
+          formControlName="image"
+          multiple
+          (change)="selectImage($event)"
+        /><br /><br />
+      </div>
+    </div>
+    <br />
+    <button type="reset" class="btn btn btn-outline-dark">Reset</button
+    >&nbsp;&nbsp;&nbsp;
+    <button type="submit" (click)="studentSubmit()" class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>
