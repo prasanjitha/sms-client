@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root .dx-drawer-contents add new page .dx-card p:nth-child(2)')).getText();
+    return element(by.css('app-root .dx-drawer-contents add new page new tab bar .dx-card p:nth-child(2)')).getText();
   }
 }
